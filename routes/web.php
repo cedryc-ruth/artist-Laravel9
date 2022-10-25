@@ -28,5 +28,10 @@ Route::put('/artist/{id}', [ArtistController::class, 'update'])
 Route::get('/artist/create', [ArtistController::class, 'create'])->name('artist.create');
 Route::post('/artist', [ArtistController::class, 'store'])->name('artist.store');
 Route::delete('/artist/{id}', [ArtistController::class, 'destroy'])
-->where('id', '[0-9]+')->name('artist.delete');
+	->where('id', '[0-9]+')->name('artist.delete');
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__.'/auth.php';
