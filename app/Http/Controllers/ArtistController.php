@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artist;
+use Illuminate\Support\Facades\Auth;
+
 
 class ArtistController extends Controller
 {
@@ -28,7 +30,11 @@ class ArtistController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   dd(Auth::user());
+     /*   if (! Gate::allows('update-post', $post)) {
+            abort(403);
+        }
+*/
         return view('artist.create');
     }
 
