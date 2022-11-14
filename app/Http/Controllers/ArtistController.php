@@ -30,7 +30,11 @@ class ArtistController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   dd(Auth::user());
+    {   
+        if(Auth::user()==null || Auth::user()->role!='admin') {
+            return redirect()->route('login');
+        }
+
      /*   if (! Gate::allows('update-post', $post)) {
             abort(403);
         }
