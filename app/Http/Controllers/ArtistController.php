@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Artist;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Gate;
 
 class ArtistController extends Controller
 {
@@ -31,14 +31,14 @@ class ArtistController extends Controller
      */
     public function create()
     {   
-        if(Auth::user()==null || Auth::user()->role!='admin') {
+    /*    if(Auth::user()==null || Auth::user()->role!='admin') {
             return redirect()->route('login');
-        }
-
-     /*   if (! Gate::allows('update-post', $post)) {
+        }    
+    */
+        if (! Gate::allows('create-artist')) {
             abort(403);
         }
-*/
+
         return view('artist.create');
     }
 
@@ -91,6 +91,10 @@ class ArtistController extends Controller
      */
     public function edit($id)
     {
+        if (! Gate::allows('create-artist')) {
+            abort(403);
+        }
+
         $artist = Artist::find($id);
         
         return view('artist.edit',[
@@ -132,6 +136,10 @@ class ArtistController extends Controller
      */
     public function destroy($id)
     {
+        if (! Gate::allows('create-artist')) {
+            abort(403);
+        }
+        
         $artist = Artist::find($id);
 
         if($artist) {
