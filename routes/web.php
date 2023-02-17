@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\RequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +46,8 @@ Route::prefix('admin')->group(function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/request', [RequestController::class, 'index'])->name('request.index');
+Route::get('/request/{id}', [RequestController::class, 'resolver'])->name('request.resolver');
 
 require __DIR__.'/auth.php';
