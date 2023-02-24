@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\ShowController;
 use App\Http\Controllers\RequestController;
 
 /*
@@ -18,6 +19,20 @@ use App\Http\Controllers\RequestController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/show', [ShowController::class, 'index'])->name('show.index');
+Route::get('/show/{id}', [ShowController::class, 'show'])
+	->where('id', '[0-9]+')->name('show.show');
+Route::get('/show/{slug}', [ShowController::class, 'show'])
+	->where('slug', '[a-zA-Z0-9]+')->name('show.showBySlug');
+Route::get('/show/edit/{id}', [ShowController::class, 'edit'])
+	->where('id', '[0-9]+')->name('show.edit');
+Route::put('/show/{id}', [ShowController::class, 'update'])
+	->where('id', '[0-9]+')->name('show.update');
+Route::get('/show/create', [ShowController::class, 'create'])->name('show.create');
+Route::post('/show', [ShowController::class, 'store'])->name('show.store');
+Route::delete('/show/{id}', [ShowController::class, 'destroy'])
+	->where('id', '[0-9]+')->name('show.delete');
 
 Route::get('/artist', [ArtistController::class, 'index'])->name('artist.index');
 Route::get('/artist/{id}', [ArtistController::class, 'show'])
