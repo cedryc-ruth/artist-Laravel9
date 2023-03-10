@@ -27,4 +27,6 @@
         @endforeach
         </tbody>
     </table>
+
+    <div class="space-x-0:5">{{ $artists->links() }}</div>
 @endsection

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Artist;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\App;
 
 class ArtistController extends Controller
 {
@@ -16,9 +18,11 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        $artists = Artist::all();
+        App::setLocale('fr');
+
+        $artists = DB::table('artists')->paginate(5);
         
-        return view('admin.artist.index',[
+        return view('artist.index',[
             'artists' => $artists,
             'resource' => 'artistes',
         ]);
