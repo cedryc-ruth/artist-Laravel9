@@ -1,17 +1,17 @@
 @extends('layouts.main')
 
-@section('title', 'Fiche d\'un artiste')
+@section('title', 'Fiche d\'un spectacle')
 
 @section('content')
-    <h1>{{ $artist->firstname }} {{ $artist->lastname }}</h1>
+    <h1>{{ $show->title }}</h1>
 
-    <div><a href="{{ route('artist.edit' ,$artist->id) }}">Modifier</a></div>
+    <div><a href="{{ route('show.edit' ,$show->id) }}">Modifier</a></div>
 
-    <form method="post" action="{{ route('artist.delete', $artist->id) }}">
+    <form method="post" action="{{ route('show.delete', $show->id) }}">
 		@csrf
 		@method('DELETE')
 		<button>Supprimer</button>
     </form>
 
-    <nav><a href="{{ route('artist.index') }}">Retour à l'index</a></nav>
+    <nav><a href="{{ route('show.index') }}">Retour à l'index</a></nav>
 @endsection

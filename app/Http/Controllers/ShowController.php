@@ -46,12 +46,19 @@ class ShowController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int|string  $idOrSlug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int|string $idOrSlug)
     {
-        //
+        $show = is_int($idOrSlug) 
+            ? Show::find($idOrSlug)
+            : Show::where('slug',$idOrSlug)->first();
+//dump($show);die;
+        return view('show.show',[
+            'resource' => 'spectacles',
+            'show' => $show,
+        ]);
     }
 
     /**

@@ -65,4 +65,7 @@ Route::get('/dashboard', function () {
 Route::get('/request', [RequestController::class, 'index'])->name('request.index');
 Route::get('/request/{id}', [RequestController::class, 'resolver'])->name('request.resolver');
 
+//Route des flux RSS
+Route::feeds();
+
 require __DIR__.'/auth.php';

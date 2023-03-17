@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
 
+        @include('feed::links')
+        
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
