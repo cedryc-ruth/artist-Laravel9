@@ -65,4 +65,13 @@ Route::get('/dashboard', function () {
 Route::get('/request', [RequestController::class, 'index'])->name('request.index');
 Route::get('/request/{id}', [RequestController::class, 'resolver'])->name('request.resolver');
 
+//Test de Cashier
+Route::post('/purchase', function (Request $request) {
+    $stripeCharge = $request->user()->charge(
+        100, $request->paymentMethodId
+    );
+ 
+    // ...
+});
+
 require __DIR__.'/auth.php';
