@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Type;
 
 class Artist extends Model
 {
@@ -29,4 +30,8 @@ class Artist extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    public function types() {
+      return $this->belongsToMany(Type::class);
+    }
 }
